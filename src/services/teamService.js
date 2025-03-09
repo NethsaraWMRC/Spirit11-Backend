@@ -55,7 +55,8 @@ const teamService = {
   },
 
   async getUserTeam(userId) {
-    return await User.findById(userId).populate("team.player");
+    const user = await User.findById(userId).populate("team.player");
+    return user.team;
   },
 
   async calculateTotalTeamStats(userId) {
