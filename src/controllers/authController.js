@@ -1,11 +1,25 @@
-import { registerUser, loginUser } from "../services/authService.js";
+import {
+  registerUser,
+  loginUser,
+  registerAdmin,
+} from "../services/authService.js";
 import { generateRefreshToken } from "../utils/tokenUtils.js";
 
-export const register = async (req, res) => {
+export const userRegistration = async (req, res) => {
   try {
-    const { username, password, budget } = req.body;
-    await registerUser(username, password, budget);
+    const { username, password } = req.body;
+    await registerUser(username, password);
     res.status(201).json({ message: "User registered successfully" });
+  } catch (error) {
+    res.status(400).json({ message: error.message });
+  }
+};
+
+export const adminRegistration = async (req, res) => {
+  try {
+    const { username, password } = req.body;
+    await registerAdmin(username, password);
+    res.status(201).json({ message: "Admin registered successfully" });
   } catch (error) {
     res.status(400).json({ message: error.message });
   }
@@ -19,7 +33,6 @@ export const login = async (req, res) => {
     res.cookie("refreshToken", refreshToken, { httpOnly: true, secure: true });
     res.json({ accessToken, message: "User Login successfully", username });
   } catch (error) {
-    // Use statusCode property to set the correct HTTP status code
     if (error.statusCode) {
       res.status(error.statusCode).json({ message: error.message });
     } else {
