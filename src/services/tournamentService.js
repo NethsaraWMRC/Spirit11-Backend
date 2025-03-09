@@ -13,11 +13,11 @@ const tournamentService = {
     let highestWicket = { player: null, wickets: 0 };
 
     for (const player of players) {
-      totalRuns += player.runs || 0;
+      totalRuns += player.totalRuns || 0;
       totalWickets += player.wickets || 0;
 
-      if (player.runs > highestRun.runs) {
-        highestRun = { player: player.name, runs: player.runs };
+      if (player.totalRuns > highestRun.runs) {
+        highestRun = { player: player.name, runs: player.totalRuns };
       }
 
       if (player.wickets > highestWicket.wickets) {
