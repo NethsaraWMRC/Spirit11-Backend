@@ -8,7 +8,7 @@ const userSchema = new mongoose.Schema(
     team: [
       {
         player: { type: mongoose.Schema.Types.ObjectId, ref: "Player" },
-        // price: { type: Number, required: true },
+        price: { type: Number, required: true },
       },
     ],
     refreshToken: { type: String },

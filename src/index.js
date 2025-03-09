@@ -8,6 +8,7 @@ import cors from "cors";
 import authRoutes from "./routes/authRoutes.js";
 import playerRoutes from "./routes/playerRoutes.js";
 import teamRoutes from "./routes/teamRoutes.js";
+import leaderboard from "./routes/leaderboardRoutes.js";
 
 dotenv.config();
 
@@ -26,6 +27,7 @@ const connection = mongoose.connection;
 app.use("/api/auth", authRoutes);
 app.use("/api/players", playerRoutes);
 app.use("/api/team", teamRoutes);
+app.use("/api/leaderboard", leaderboard);
 
 connection.once("open", () => {
   console.log("MongoDB connection successful!");

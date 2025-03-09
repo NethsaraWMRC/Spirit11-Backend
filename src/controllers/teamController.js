@@ -34,6 +34,23 @@ const teamController = {
       res.status(400).json({ error: error.message });
     }
   },
+
+  async getTotalTeamStats(req, res) {
+    try {
+      const { userId } = req.params;
+      const stats = await teamService.calculateTotalTeamStats(userId);
+      res.status(200).json({
+        success: true,
+        message: "Total team stats calculated successfully",
+        data: stats,
+      });
+    } catch (error) {
+      res.status(400).json({
+        success: false,
+        message: error.message || "Error calculating team stats",
+      });
+    }
+  },
 };
 
 export default teamController;

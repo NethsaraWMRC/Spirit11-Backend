@@ -57,3 +57,22 @@ export const deletePlayer = async (req, res) => {
     res.status(500).json({ message: error.message });
   }
 };
+
+//get player stats (points & value)
+export const getPlayerStats = async (req, res) => {
+  try {
+    const { playerId } = req.params;
+
+    const stats = await playerService.calculatePlayerStats(playerId);
+    res.status(200).json({
+      success: true,
+      message: "Player stats calculated successfully",
+      data: stats,
+    });
+  } catch (error) {
+    res.status(400).json({
+      success: false,
+      message: error.message || "Error calculating player stats",
+    });
+  }
+};
