@@ -2,10 +2,9 @@ import User from "../models/user.js";
 import playerService from "./playerService.js";
 
 const leaderboardService = {
-  // Get leaderboard rankings
   async getLeaderboard() {
     // Find users who have exactly 11 players in their team
-    const users = await User.find({ "team.11": { $exists: true } }).populate(
+    const users = await User.find({ team: { $size: 11 } }).populate(
       "team.player"
     );
 
