@@ -2,7 +2,7 @@ import mongoose from "mongoose";
 
 const playerSchema = new mongoose.Schema({
   name: { type: String, required: true },
-  unversity: { type: String, required: true },
+  university: { type: String, required: true },
   category: { type: String, required: true },
   totalRuns: { type: Number, required: true },
   ballsFaced: { type: Number, required: true },
