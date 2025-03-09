@@ -31,6 +31,8 @@ const teamService = {
     user.team.push({ player: playerId, price: value });
     user.budget -= value;
 
+    console.log(userId);
+
     await user.save();
     return user;
   },

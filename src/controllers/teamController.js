@@ -3,7 +3,9 @@ import teamService from "../services/teamService.js";
 const teamController = {
   async addPlayer(req, res) {
     try {
-      const { userId, playerId } = req.body;
+      const { playerId } = req.body;
+
+      const userId = req.userId;
 
       const updatedUser = await teamService.addPlayerToTeam(userId, playerId);
       res.json(updatedUser);
@@ -14,7 +16,8 @@ const teamController = {
 
   async removePlayer(req, res) {
     try {
-      const { userId, playerId } = req.body;
+      const { playerId } = req.body;
+      const userId = req.userId;
       const updatedUser = await teamService.removePlayerFromTeam(
         userId,
         playerId
@@ -27,7 +30,7 @@ const teamController = {
 
   async getUserTeam(req, res) {
     try {
-      const { userId } = req.params;
+      const userId = req.userId;
       const userTeam = await teamService.getUserTeam(userId);
       res.json(userTeam);
     } catch (error) {
@@ -37,7 +40,7 @@ const teamController = {
 
   async getTotalTeamStats(req, res) {
     try {
-      const { userId } = req.params;
+      const userId = req.userId;
       const stats = await teamService.calculateTotalTeamStats(userId);
       res.status(200).json({
         success: true,
